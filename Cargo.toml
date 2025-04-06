@@ -1,0 +1,22 @@
+[package]
+name = "uring-poller"
+version = "0.1.0"
+edition = "2024"
+
+[profile.release]
+opt-level = "s"
+lto = true
+# By default, Cargo specifies 16 parallel codegen units for release builds.
+# This improves compile times, but prevents some optimizations.
+codegen-units = 1
+panic = "abort"
+
+[dependencies]
+slab = { version = "*", default-features = false }
+io-uring = "*"
+bitvec = { version = "*", default-features = false }
+socket2 = "*"
+bytes = { version = "*", default-features = false }
+env_logger = { version = "*", default-features = false }
+log = { version = "*", default-features = false }
+libc = { version = "*", default-features = false }
